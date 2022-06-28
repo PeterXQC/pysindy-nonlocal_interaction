@@ -305,7 +305,7 @@ class WeakPDELibrary(BaseFeatureLibrary):
         data_length = len(self.spatiotemporal_grid[:, 0])
         
         ## Make sure that the number of subdomains don't exceed maximum possible given the spatiotemporal grid
-        ## By updaing self.K 
+        ## By updating self.K 
         self.K = min(self.K, np.shape(self.spatiotemporal_grid)[0]-1)
         self.domain_centers = np.zeros((self.K, self.grid_ndim))
         
