@@ -290,7 +290,7 @@ class WeakPDELibrary(BaseFeatureLibrary):
 
         # Sample the random domain centers
         xt1, xt2 = self._get_spatial_endpoints()
-           ## K = 100 subregions by default, each of whose center is given by a vector of n points
+        ## K = 100 subregions by default, each of whose center is given by a vector of n points
         ##self.domain_centers = np.zeros((self.K, self.grid_ndim))
         ## The domain center grid must be at least H_xt[i] away from the actual defined boundaries. 
         ## Codewise, this constraint is given by the fact that when we construct the grid for XT_interpolator
