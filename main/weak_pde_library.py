@@ -239,7 +239,12 @@ class WeakPDELibrary(BaseFeatureLibrary):
 
         # Weak form checks and setup
         self._weak_form_setup()
-
+    # ## get spatial grid from spatial temporal grid
+    # def get_spatail_grid(self):
+    #     return self.spatial_grid
+    # def get_temporal_grid(self):
+    #     return self.temporal_grid
+    
     def _weak_form_setup(self):
         xt1, xt2 = self._get_spatial_endpoints()
         L_xt = xt2 - xt1
@@ -273,7 +278,7 @@ class WeakPDELibrary(BaseFeatureLibrary):
             raise ValueError("The number of subdomains must be > 0")
 
         self._set_up_weights()
-
+    
     def _get_spatial_endpoints(self):
         x1 = np.zeros(self.grid_ndim)
         x2 = np.zeros(self.grid_ndim)
@@ -747,29 +752,29 @@ class WeakPDELibrary(BaseFeatureLibrary):
     
 #     nonlocal suit starts here
     def indicator(x, endpts):
-    '''
-    Definition:
-         indicator function is function which if x value is inside the bound, you will get 1
-         Otherwise you will get 0
+        '''
+        Definition:
+            indicator function is function which if x value is inside the bound, you will get 1
+            Otherwise you will get 0
 
-    Require:
-        x, left_bound, right_bound must have the same dimension
+        Require:
+            x, left_bound, right_bound must have the same dimension
 
-    Parameters: 
+        Parameters: 
 
-            x: 1 x n vector representing the index of point to check (Time dimension should be excluded)
+                x: 1 x n vector representing the index of point to check (Time dimension should be excluded)
 
-            endpts: 2d (n x 2) array of index. First dimension is all the spatial dimensions, and second dimension are 
-                    left and right bound of the subdomain in terms of index
+                endpts: 2d (n x 2) array of index. First dimension is all the spatial dimensions, and second dimension are 
+                        left and right bound of the subdomain in terms of index
 
-    `return: 
-            1 or 0, should be clear enough
-    
-    '''
-    if len(x) != len(len(endpts[:, 0])):
-        raise ValueError("Parameter dimensions do not agree.")
+        `return: 
+                1 or 0, should be clear enough
         
-    return int(all((x >= endpts[:, 0]) & (x <= endpts[:, 1])))
+        '''
+        if len(x) != len(len(endpts[:, 0])):
+            raise ValueError("Parameter dimensions do not agree.")
+            
+        return int(all((x >= endpts[:, 0]) & (x <= endpts[:, 1])))
 
     def compute_integral(X, spatiotemporal_grid, t, j, endpts):
         '''
