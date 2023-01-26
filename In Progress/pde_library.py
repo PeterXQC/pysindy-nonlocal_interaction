@@ -486,7 +486,9 @@ class PDELibrary(BaseFeatureLibrary):
         if self.library_ensemble:
             xp_full = self._ensemble(xp_full)
             
-        print(xp_full.shape)
+        print(np.shape(xp_full))
+        print(self.num_trajectories)
+        print(np.shape(spatiotemporal_grid))
         return xp_full
 
     def get_spatial_grid(self):
